@@ -6,3 +6,4 @@
 ###### candidatos
 ###### padronizações
 ##### web scraping
+###### jornais regionais
