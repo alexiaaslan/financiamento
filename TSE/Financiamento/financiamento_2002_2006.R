@@ -1,9 +1,14 @@
-# Financiamento 2006 e 2002
+# Financiamento 2002 e 2006
 
-# ler diretorio de arquivo
+# especificar o local do arquivo
+# deixei manual para mudar pois cada ano era um problema diferente, incluindo nomeclatura
+
 nome.arquivo <- "H:\\Financiamento\\2002\\TSE\\Comite\\Receita\\ReceitaComite.csv"
 
 # ler arquivo
+# especifiquei o colClasses de acordo com cada ano, receita e depesa de cada entidade 
+# o CPF/CNPJ tem umas letras perdidas e ler como numero estava cortando os zeros e as celulas com letras
+
 dados <- read.table(nome.arquivo, sep=";", quote="\"",
                     fill = TRUE, fileEncoding="latin1", 
                     skip = 1, stringsAsFactors=FALSE,
@@ -14,7 +19,7 @@ dados <- read.table(nome.arquivo, sep=";", quote="\"",
                     stringsAsFactors=FALSE, 
                     colClasses=c(SEQ_CAND="character", CNPJ_CAND="character", NUMERO_CPF_CGC_FORNECEDOR="character"))
 
-# para comites e as aspas malditas
+# para comites e as aspas malditas, os arquivos ja devem ser lidos de forma diferente
 
 dados <- read.table(nome.arquivo, sep=";", quote="",
                     fill = TRUE, fileEncoding="latin1", 
@@ -22,7 +27,7 @@ dados <- read.table(nome.arquivo, sep=";", quote="",
                     colClasses=c(V5="character"))
 
 # nomear colunas
-# checar documento nomes_colunas.r
+# checar documento nomes_colunas.r (esta no git tambem)
 
 names(dados) <- c("SIGLA_UF",
                          "SIGLA_PART",
@@ -39,7 +44,7 @@ names(dados) <- c("SIGLA_UF",
 # somente para comite 2006 e Candidato 2002: tirar as malditas aspas que ficaram
 dados[] <- lapply(dados, function(x) gsub("\"", "", x))
 
-# salvar geral
+# salvar geral (o arquivo grande com todo mundo, sem divisao)
 write.table(dados, "H:\\Financiamento\\2002\\Comites\\2002_Receitas_Comite_Brasil.txt",
             sep = ";",
             quote = T,
