@@ -1,8 +1,13 @@
+#colocar o enderecoo do computador onde estao os arquivos
 diretorio <- setwd("/home/alexia/Downloads/VOTACAO_CANDIDATO_UF_1945/")
+
+#criar lista de arquivo baseada no diretorio dado
 lista.arquivos <- list.files(diretorio)
 
+#cria data frame vazio
 dados.output<-data.frame()
 
+#inicio loop para empilhar
 for (i in 1:length(lista.arquivos)){
   
   # Gerar o caminho e nome do arquivo combinando pasta e o arquivo i
@@ -40,9 +45,9 @@ for (i in 1:length(lista.arquivos)){
 
 
 #escrever arquivo final
-write.table(dados.output, "Y:\\ELEITORAL\\Financiamento de Campanha\\Repositorio TSE - Originais\\2014\\prestacao_final_2014\\Candidatos\\Receita\\receita_2014_brasil.txt",
+write.table(dados.output, "arquivo.txt",
             sep = ";",
             quote = T,
             dec = ",",
             row.names = F,
-            col.names = F)
+            col.names = T)
